@@ -33,8 +33,8 @@ public class Pet {
     @Column(length = 60, nullable = false)
     private String dono;
 
-    @OneToMany(mappedBy = "pet")
-    private List<Ordem> ordens = new ArrayList<Ordem>();
+    // @OneToMany(mappedBy = "pet")
+    // private List<Ordem> ordens = new ArrayList<Ordem>();
 
     public Pet(String nome, String dono) {
         this.nome = nome;
