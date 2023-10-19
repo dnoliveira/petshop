@@ -1,0 +1,1 @@
+java -jar petshop-0.0.1-SNAPSHOT.jar --spring.datasource.url=jdbc:mysql://localhost:3306/petshop --spring.datasource.username=root --spring.datasource.password=rootroot

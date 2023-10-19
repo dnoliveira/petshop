@@ -28,6 +28,11 @@ public class PetService {
     return petRepository.findAll();
   }
 
+  public List<Pet> findAllListBySearchText(String searchText){
+    log.info("Request to findAllListBySearchText(" +searchText+ "%)");
+    return petRepository.findAllActiveUsers(searchText + "%");
+  }
+
   public void delete(Long id) {
     log.debug("Request to delete Pet : {}", id);
     petRepository.deleteById(id);

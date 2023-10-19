@@ -44,6 +44,7 @@ public class PetshopApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		/*
 		Pet pet1 = new Pet("Bidu", "Monica");
 		Pet pet2 = new Pet("Spike", "Gabriella");
 		pet1 = petRepository.save(pet1);
@@ -63,6 +64,7 @@ public class PetshopApplication implements ApplicationRunner {
 		servicoList.add(serv2);
 		Ordem ordem = new Ordem(Instant.parse("2022-05-13T00:00:00.00Z"), "", pet1, servicoList);
 		ordemService.save(ordem);
+		*/
 
 		/*
 		 * ordem = ordemRepository.save(ordem);

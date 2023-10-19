@@ -5,6 +5,7 @@ import br.com.douglas.petshop.service.PetService;
 import io.swagger.annotations.Api;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -52,14 +53,22 @@ public class PetController {
 
   }
 
-  @GetMapping("/")
+  @GetMapping({"/searchText/{searchText}"})
+  public ResponseEntity<List<Pet>> getPetsBySearchText(@PathVariable String searchText){
+    List<Pet> lista;
+    if (!searchText.isEmpty()){
+      lista = petService.findAllListBySearchText(searchText);
+    }else{
+      lista = petService.findAllList();
+    }
+
+    return ResponseEntity.ok().body(lista);
+  }
+
+  @GetMapping({"", "/", "/searchText/", "/searchText"})
   public ResponseEntity<List<Pet>> getPets(){
     List<Pet> lista = petService.findAllList();
-    if(lista.size() > 0) {
-      return ResponseEntity.ok().body(lista);
-    }else{
-      return ResponseEntity.notFound().build();
-    }
+    return ResponseEntity.ok().body(lista);
   }
 
   /**
@@ -71,7 +80,7 @@ public class PetController {
    * ou com status {@code 500 (Internal Server Error)} se o pet não pode ser atualizado.
    * @throws URISyntaxException if the Location URI syntax is incorrect.
    */
-  @PutMapping("/")
+  @PutMapping({"", "/"})
   public ResponseEntity<Pet> updatePet(@RequestBody Pet pet) throws URISyntaxException {
     log.info("REST request to update Pet : {}", pet);
     if (pet.getId() == null) {
@@ -90,7 +99,7 @@ public class PetController {
    * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new pet, or with status {@code 400 (Bad Request)} if the pet has already an ID.
    * @throws URISyntaxException if the Location URI syntax is incorrect.
    */
-  @PostMapping("/")
+  @PostMapping({"", "/"})
   public ResponseEntity<Pet> createPet(@RequestBody Pet pet) throws URISyntaxException {
     log.info("REST request to save Pet : {}", pet);
     System.out.println("Tentei criar pet");
