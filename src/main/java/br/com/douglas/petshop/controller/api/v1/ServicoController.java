@@ -54,7 +54,7 @@ public class ServicoController {
 
   }
 
-  @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value = {"/",""}, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<Servico>> getServicos(){
     List<Servico> lista = servicoService.findAllList();
     if(lista.size() > 0) {
@@ -73,7 +73,7 @@ public class ServicoController {
    * ou com status {@code 500 (Internal Server Error)} se o servico não pode ser atualizado.
    * @throws URISyntaxException if the Location URI syntax is incorrect.
    */
-  @PutMapping("/")
+  @PutMapping({"/",""})
   public ResponseEntity<Servico> updateServico(@RequestBody Servico servico) throws URISyntaxException {
     log.info("REST request to update Servico : {}", servico);
     if (servico.getId() == null) {
@@ -92,7 +92,7 @@ public class ServicoController {
    * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new servico, or with status {@code 400 (Bad Request)} if the servico has already an ID.
    * @throws URISyntaxException if the Location URI syntax is incorrect.
    */
-  @PostMapping("/")
+  @PostMapping({"/",""})
   public ResponseEntity<Servico> createServico(@RequestBody Servico servico) throws URISyntaxException {
     log.info("REST request to save Servico : {}", servico);
     System.out.println("Tentei criar servico");
